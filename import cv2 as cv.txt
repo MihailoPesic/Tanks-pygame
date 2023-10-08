@@ -1,0 +1,31 @@
+import cv2 as cv
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+
+nature_image=cv.imread("Zugpsitze_mountain.jpg")
+#plt.imshow(nature_image)
+siva_priroda=cv.cvtColor(nature_image, cv2.COLOR_BGR2GRAY)
+blurred_priroda=cv.GaussianBlur(siva_priroda, (5, 5), 0)
+ivice_prirode=cv.Canny(blurred_priroda, 30, 100)
+#plt.imshow(blurred_priroda)
+
+
+
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 5))
+
+# Display the original image in the first subplot
+axes[0].imshow(cv2.cvtColor(nature_image, cv2.COLOR_BGR2RGB))  # Convert BGR to RGB for proper display
+axes[0].set_title('Original Image')
+
+# Display the Canny edges image in the second subplot
+axes[1].imshow(ivice_prirode, cmap='gray')  # Use 'gray' colormap for grayscale images
+axes[1].set_title('Canny Edges')
+
+# Adjust spacing between subplots for better layout
+plt.tight_layout()
+
+# Show the plot
+plt.show()
